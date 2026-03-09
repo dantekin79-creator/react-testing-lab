@@ -1,10 +1,12 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import AccountContainer from '../components/AccountContainer';
 
+// Test suite for verifying adding transactions and API calls
 describe('Add Transactions Test Suite', () => {
   test('new transactions are added to frontend and POST request is called', async () => {
+    // Initial mock transactions
     const mockTransactions = [
       {
         id: '1',
@@ -15,14 +17,15 @@ describe('Add Transactions Test Suite', () => {
       }
     ];
 
+    // Mock initial fetch
     global.setFetchResponse(mockTransactions);
 
     render(<AccountContainer />);
 
-    // Wait for initial transactions to load
+    // Wait for initial load
     await screen.findByText('Paycheck from Bob\'s Burgers');
 
-    // Mock fetch for POST
+    // Mock the new transaction response
     const newTransaction = {
       id: '2',
       date: '2023-01-01',
@@ -31,26 +34,29 @@ describe('Add Transactions Test Suite', () => {
       amount: 100
     };
 
-    global.fetch = vi.fn(() => Promise.resolve({
+    // Mock POST fetch
+    window.fetch = vi.fn(() => Promise.resolve({
       json: () => Promise.resolve(newTransaction),
       ok: true,
       status: 201
     }));
 
+    // Get form inputs
     const dateInput = screen.getByTestId('date-input');
     const descriptionInput = screen.getByTestId('description-input');
     const categoryInput = screen.getByTestId('category-input');
     const amountInput = screen.getByTestId('amount-input');
     const submitButton = screen.getByRole('button', { name: /add transaction/i });
 
-    await userEvent.type(dateInput, '2023-01-01');
-    await userEvent.type(descriptionInput, 'Test Transaction');
-    await userEvent.type(categoryInput, 'Test');
-    await userEvent.type(amountInput, '100');
-    await userEvent.click(submitButton);
+    // Fill and submit form
+    fireEvent.change(dateInput, { target: { value: '2023-01-01' } });
+    fireEvent.change(descriptionInput, { target: { value: 'Test Transaction' } });
+    fireEvent.change(categoryInput, { target: { value: 'Test' } });
+    fireEvent.change(amountInput, { target: { value: '100' } });
+    fireEvent.click(submitButton);
 
-    // Check POST was called
-    expect(global.fetch).toHaveBeenCalledWith('http://localhost:6001/transactions', {
+    // Assert POST was called with correct data
+    expect(window.fetch).toHaveBeenCalledWith('http://localhost:6001/transactions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -63,7 +69,7 @@ describe('Add Transactions Test Suite', () => {
       })
     });
 
-    // Check new transaction is displayed
+    // Assert new transaction appears
     expect(await screen.findByText('Test Transaction')).toBeInTheDocument();
   });
 });

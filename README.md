@@ -1,95 +1,70 @@
-# Lab: Testing using Vitest
+# React Testing Lab - Banking Transaction Tracker
 
-## Overview
-Now that you have covered creating a testing suite, we can use the key principles of test-driven development to work with an existing app. Normally, you would build the testing while developing, but you were recently brought onto this project to add a testing suite! You are working to implement a testing suite for a banking application that allows users to track their expenditures by submitting and searching through them.
+A modern React application for tracking personal expenditures and income transactions. Built with comprehensive testing using Vitest to ensure reliability and functionality.
 
-## Task 1: Define the Problem
-- Build a testing suite for an existing application.
+## Description
 
-## Task 2: Determine the Design
-- Identify the key features of this project.
+This banking application allows users to view, add, search, and sort their financial transactions. It features a clean UI for managing personal finances, with real-time search and sorting capabilities. The app includes a full test suite covering display, addition, and search/sort functionalities.
 
-## Task 3: Develop the Code
-- One feature needs to be completed: the search functionality.
+## Features
 
-## Task 4: Test and Refine
-- Build a test suite using Vitest to test key features:
-  - Display transactions
-  - Add transactions
-  - Search transactions and sort transactions
+- **View Transactions**: Display all transactions in a responsive table format
+- **Add Transactions**: Form to input new transactions with date, description, category, and amount
+- **Search Transactions**: Real-time search filtering by description or category
+- **Sort Transactions**: Sort transactions alphabetically by description or category
+- **Comprehensive Testing**: Full test coverage using Vitest and Testing Library
 
-## Task 5: Document and Maintain
-- Commit as you go, writing meaningful commit messages.
-- Push commit history to GitHub periodically and when the lab is complete.
+## Installation
 
-## Tools and Resources
-- Vitest: [Vitest Documentation](https://vitest.dev/guide/)
-
-## Instructions
-
-### Set Up
-Before we begin coding, let's complete the initial setup for this lesson:
-
-#### Fork and Clone
-1. Go to the provided GitHub repository link.
-2. Fork the repository to your GitHub account.
-3. Clone the forked repository to your local machine.
-
-#### Open and Run File
-1. Open the project in VSCode.
-2. Run `npm install` to install all necessary dependencies.
-
-### Instructions
-#### Task 1: Define the Problem
-- Build a testing suite for an existing application.
-
-#### Task 2: Determine the Design
-- Identify the key features of this project.
-
-#### Task 3: Develop, Test, and Refine the Code
-
-1. Open the React application in the browser:
+1. Clone the repository:
    ```sh
-   npm run dev
+   git clone https://github.com/dantekin79-creator/react-testing-lab.git
+   cd react-testing-lab
    ```
-2. Run the included backend:
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+## Usage
+
+1. Start the backend server:
    ```sh
    npm run server
    ```
-3. Create a test branch.
 
-#### Display Transactions Test
-- Create a test suite that will test if transactions are displayed on startup.
+2. Start the React application:
+   ```sh
+   npm run dev
+   ```
 
-#### Add Transactions Test
-- Create a test suite that will test:
-  - If new transactions are added to the frontend.
-  - If a POST request was called.
+3. Open your browser and navigate to `http://localhost:5173`
 
-#### Search Transactions and Sort Transactions Test
-- Create a test suite that will test:
-  - If a change event is triggered, the page updates accordingly.
-  - Search is incomplete, so build out the search functionality based on the test.
+4. Run tests:
+   ```sh
+   npm test
+   ```
 
-4. Push the feature branch and open a PR on GitHub.
-5. Merge to `main`.
+## Technologies
 
-### Task 4: Document and Maintain
-#### Best Practice Documentation Steps:
-- Add comments to the code to explain purpose and logic.
-- Clarify intent/functionality of code for other developers.
-- Add screenshots of completed work included in Markdown in `README.md`.
-- Update `README.md` to reflect the functionality of the application following [Make a README](https://makeareadme.com).
-- Delete any stale branches on GitHub.
-- Remove unnecessary/commented-out code.
-- If needed, update `.gitignore` to remove sensitive data.
+- **Frontend**: React 19, Vite
+- **Backend**: JSON Server
+- **Testing**: Vitest, Testing Library, jsdom
+- **Styling**: Semantic UI CSS
 
-### Submission
-- Once the test suite is built, submit the link to the GitHub repository on Canvas.
+## Screenshots
 
-### Grading Criteria
-- The application has test suites.
-- The application tests if transactions display on load.
-- The application tests if a new transaction can be added.
-- The application tests if search functionality updates the page correctly.
+![Screenshot of the Banking Transaction Tracker Application](public/Screenshot%202026-03-09%20071246.png)
 
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License.

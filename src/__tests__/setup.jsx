@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 
   
 global.setFetchResponse = (val) => {
-    global.fetch = vi.fn(() => Promise.resolve({
+    window.fetch = vi.fn(() => Promise.resolve({
         json: () => Promise.resolve(val),
         ok: true,
         status: 200

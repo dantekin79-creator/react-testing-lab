@@ -2,8 +2,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AccountContainer from '../components/AccountContainer';
 
+// Test suite for verifying search and sort functionality updates the UI
 describe('Search and Sort Test Suite', () => {
   test('change event is triggered and page updates', async () => {
+    // Mock transactions for testing
     const mockTransactions = [
       {
         id: '1',
@@ -28,19 +30,21 @@ describe('Search and Sort Test Suite', () => {
       }
     ];
 
+    // Mock initial fetch
     global.setFetchResponse(mockTransactions);
 
     render(<AccountContainer />);
 
-    // Wait for transactions to load
+    // Wait for all transactions to load
     await screen.findByText('Paycheck from Bob\'s Burgers');
     await screen.findByText('South by Southwest Quinoa Bowl at Fresh & Co');
     await screen.findByText('Chipotle');
 
-    // Test search: type 'chipotle', should show only Chipotle
+    // Test search: type 'chipotle' to filter
     const searchInput = screen.getByPlaceholderText('Search your Recent Transactions');
     await userEvent.type(searchInput, 'chipotle');
 
+    // Assert only Chipotle is shown
     expect(screen.getByText('Chipotle')).toBeInTheDocument();
     expect(screen.queryByText('Paycheck from Bob\'s Burgers')).not.toBeInTheDocument();
 
@@ -51,9 +55,8 @@ describe('Search and Sort Test Suite', () => {
     const sortSelect = screen.getByRole('combobox');
     await userEvent.selectOptions(sortSelect, 'description');
 
-    // After sort, check order: Chipotle, Paycheck..., South...
+    // Assert order after sort (assuming alphabetical)
     const descriptions = screen.getAllByText(/Paycheck|South|Chipotle/);
-    // Assuming they are in order after sort
     expect(descriptions[0]).toHaveTextContent('Chipotle');
   });
 });

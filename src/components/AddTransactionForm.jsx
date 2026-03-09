@@ -1,27 +1,31 @@
 import React from "react";
 
-function AddTransactionForm({postTransaction}) {
-  function submitForm(e){
-    e.preventDefault()
+// AddTransactionForm component renders a form for users to input new transaction details.
+// On form submission, it collects the input values and calls the postTransaction prop function.
+function AddTransactionForm({ postTransaction }) {
+  // Function to handle form submission: prevents default, extracts form data, and posts the transaction
+  function submitForm(e) {
+    e.preventDefault(); // Prevent page reload on submit
     const newTransaction = {
       date: e.target.date.value,
       description: e.target.description.value,
       category: e.target.category.value,
       amount: e.target.amount.value
-    }
-    postTransaction(newTransaction)
-
+    };
+    postTransaction(newTransaction); // Call the parent function to add the transaction
   }
 
   return (
     <div className="ui segment">
-      <form className="ui form" onSubmit={(e)=>{submitForm(e)}}>
+      {/* Form with inline fields for transaction inputs */}
+      <form className="ui form" onSubmit={(e) => { submitForm(e) }}>
         <div className="inline fields">
-          <input type="date" name="date" data-testid="date-input" />
-          <input type="text" name="description" placeholder="Description" data-testid="description-input" />
-          <input type="text" name="category" placeholder="Category" data-testid="category-input" />
-          <input type="number" name="amount" placeholder="Amount" step="0.01" data-testid="amount-input" />
+          <input type="date" name="date" data-testid="date-input" /> {/* Date input for transaction date */}
+          <input type="text" name="description" placeholder="Description" data-testid="description-input" /> {/* Text input for description */}
+          <input type="text" name="category" placeholder="Category" data-testid="category-input" /> {/* Text input for category */}
+          <input type="number" name="amount" placeholder="Amount" step="0.01" data-testid="amount-input" /> {/* Number input for amount */}
         </div>
+        {/* Submit button to add the transaction */}
         <button className="ui button" type="submit">
           Add Transaction
         </button>
