@@ -1,7 +1,6 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
-import AccountContainer from '../components/AccountContainer';
+import AccountContainer from '../../components/AccountContainer';
 
 // Test suite for verifying adding transactions and API calls
 describe('Add Transactions Test Suite', () => {

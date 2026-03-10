@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import AccountContainer from '../components/AccountContainer';
+import AccountContainer from '../../components/AccountContainer';
 
 // Test suite for verifying search and sort functionality updates the UI
 describe('Search and Sort Test Suite', () => {

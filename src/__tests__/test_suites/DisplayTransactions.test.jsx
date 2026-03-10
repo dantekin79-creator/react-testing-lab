@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AccountContainer from '../components/AccountContainer';
+import AccountContainer from '../../components/AccountContainer';
 
 // Test suite for verifying that transactions are displayed on startup
 describe('Display Transactions Test Suite', () => {
